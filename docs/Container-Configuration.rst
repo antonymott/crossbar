@@ -1,18 +1,18 @@
 :orphan:
 
-Container Configuration
-=======================
+Container Component Configuration with authentication
+=====================================================
 
 **Containers** are worker processes spawned by Crossbar.io which
-*directly* host application classes written in Python deriving from
+*directly* host components with application classes written in Python deriving from
 ``autobahn.twisted.wamp.ApplicationSession``.
 
-This relieves the application programmer from any boilerplate code for
-hooking up application components into Crossbar.io via WAMP.
+Container components are distinct from router components (discussed elsewhere). Container components relieve the application programmer from most of the usual boilerplate code for
+hooking up application components into Crossbar.io via WAMP. However, as containers are outside and separate from router components there a few tricks to know especially if you are using authentication as your python class must include def onConnect and def onChallenge. The only exception is client-side TLS authentication which allows for explicit authentication discussed fully elsewhere in the docs. The following exmaple config and python classes assume you're using dynamic wampcra, so adjust for static as well other types authentication.
 
-For example, here is a **Python Component** configuration that will load
-the application class ``timeservice.TimeService`` in a worker process,
-connecting to the specified router (router config part omitted):
+Here is a full config.json with a **Python Component** configuration for a container that will load
+the application class ``some example that matches config.json`` in a worker process,
+connecting to the specified router:
 
 .. code:: javascript
 
